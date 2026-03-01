@@ -25,6 +25,7 @@ const SCOPES = [
   'https://www.googleapis.com/auth/analytics.edit',
   'https://www.googleapis.com/auth/tagmanager.readonly',
   'https://www.googleapis.com/auth/tagmanager.edit.containers',
+  'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
   'https://www.googleapis.com/auth/tagmanager.publish'
 ].join(' ');
 
@@ -105,9 +106,10 @@ async function refreshAccessToken(refreshToken) {
 // Get valid access token (refresh if needed)
 async function getAccessToken() {
   let tokenData = null;
+  const forceReauth = process.argv.includes('--force');
 
   // Try to load existing token
-  if (fs.existsSync(TOKEN_FILE)) {
+  if (fs.existsSync(TOKEN_FILE) && !forceReauth) {
     tokenData = JSON.parse(fs.readFileSync(TOKEN_FILE, 'utf8'));
 
     // Check if token is still valid (with 5 min buffer)
