@@ -8,6 +8,7 @@
  */
 
 const { execSync } = require('child_process');
+const { getGoogleAuthToken } = require('./google-auth');
 
 async function ensureGTM(config, ga4State = {}) {
   const gtmConfig = config.gtm || {};
@@ -28,7 +29,7 @@ async function ensureGTM(config, ga4State = {}) {
 
   // Try to find existing container
   try {
-    const token = getGoogleAuthToken();
+    const token = await getGoogleAuthToken();
     if (token) {
       const accountId = gtmConfig.account_id_optional || await getDefaultAccountId(token);
       if (accountId) {
@@ -63,9 +64,9 @@ async function ensureGTM(config, ga4State = {}) {
   console.log('  Creating new GTM container...');
 
   try {
-    const token = getGoogleAuthToken();
+    const token = await getGoogleAuthToken();
     if (!token) {
-      throw new Error('Google auth token not found. Set up GOOGLE_APPLICATION_CREDENTIALS.');
+      throw new Error('Google OAuth token not found. Run: npm run auth:ga4.');
     }
 
     const accountId = gtmConfig.account_id_optional || await getDefaultAccountId(token);
@@ -112,21 +113,6 @@ async function ensureGTM(config, ga4State = {}) {
       error: error.message
     };
   }
-}
-
-// Get Google Auth token
-function getGoogleAuthToken() {
-  const credsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-  if (credsPath) {
-    try {
-      require('fs').readFileSync(credsPath, 'utf8');
-      // Would need google-auth-library for proper JWT generation
-      return null;
-    } catch (e) {
-      return null;
-    }
-  }
-  return process.env.GOOGLE_OAUTH_TOKEN || null;
 }
 
 // Get default account ID

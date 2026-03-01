@@ -12,61 +12,64 @@
 
 const fs = require('fs');
 const path = require('path');
+const { getGoogleAuthToken } = require('./google-auth');
 
-const TOKEN_FILE = path.join(__dirname, '..', '.ga4-token.json');
 const DASHBOARD_DIR = path.join(__dirname, '..', 'dashboard');
 const STATE_FILE = path.join(__dirname, '..', 'state', 'state.json');
 const CONFIG_FILE = path.join(__dirname, '..', 'config', 'brand.config.json');
 
-// GA4 Property ID - from env var, config, or default
-const PROPERTY_ID = process.env.GA4_PROPERTY_ID
-  ? `properties/${process.env.GA4_PROPERTY_ID}`
-  : 'properties/385311652';
+function resolvePropertyId() {
+  if (process.env.GA4_PROPERTY_ID) {
+    return process.env.GA4_PROPERTY_ID;
+  }
+
+  if (fs.existsSync(STATE_FILE)) {
+    try {
+      const state = JSON.parse(fs.readFileSync(STATE_FILE, 'utf8'));
+      if (state.ga4?.property_id) {
+        return String(state.ga4.property_id);
+      }
+    } catch (e) {
+      // ignore and continue
+    }
+  }
+
+  if (fs.existsSync(CONFIG_FILE)) {
+    try {
+      const config = JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
+      if (config.ga4?.property_id_optional) {
+        return String(config.ga4.property_id_optional);
+      }
+    } catch (e) {
+      // ignore and continue
+    }
+  }
+
+  return null;
+}
+
+const PROPERTY_ID_RAW = resolvePropertyId();
+if (!PROPERTY_ID_RAW) {
+  throw new Error('GA4 property ID not configured. Set GA4_PROPERTY_ID or config.ga4.property_id_optional.');
+}
+const PROPERTY_ID = `properties/${PROPERTY_ID_RAW}`;
 
 // Get valid access token
 async function getAccessToken() {
-  if (!fs.existsSync(TOKEN_FILE)) {
-    throw new Error('Not authorized. Run: node scripts/authorize-ga4.js');
+  const accessToken = await getGoogleAuthToken();
+  if (!accessToken) {
+    throw new Error(
+      'Google OAuth token not found. Run: npm run auth:ga4 (or set GOOGLE_OAUTH_TOKEN / GOOGLE_REFRESH_TOKEN).'
+    );
   }
-
-  const tokenData = JSON.parse(fs.readFileSync(TOKEN_FILE, 'utf8'));
-
-  // Check if token is still valid (with 5 min buffer)
-  if (tokenData.expires_at && Date.now() < tokenData.expires_at - 300000) {
-    // Refresh token
-    const credentials = JSON.parse(fs.readFileSync(
-      path.join(__dirname, '..', 'google-oauth-credentials.json'), 'utf8'
-    ));
-
-    const response = await fetch('https://oauth2.googleapis.com/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        client_id: credentials.client_id,
-        client_secret: credentials.client_secret,
-        refresh_token: tokenData.refresh_token,
-        grant_type: 'refresh_token'
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error('Token refresh failed. Re-run authorization.');
-    }
-
-    const newToken = await response.json();
-    tokenData.access_token = newToken.access_token;
-    tokenData.expires_at = Date.now() + (newToken.expires_in * 1000);
-    fs.writeFileSync(TOKEN_FILE, JSON.stringify(tokenData, null, 2));
-  }
-
-  return tokenData.access_token;
+  return accessToken;
 }
 
 // Fetch GA4 data
 async function fetchGA4Data(startDate, endDate) {
   const accessToken = await getAccessToken();
 
-  const requestBody = {
+  const baseRequestBody = {
     dateRanges: [{ startDate, endDate }],
     metrics: [
       { name: 'activeUsers' },
@@ -78,32 +81,55 @@ async function fetchGA4Data(startDate, endDate) {
     dimensions: [
       { name: 'country' },
       { name: 'deviceCategory' },
-      { name: 'sessionDefaultChannelGrouping' },
-      { name: 'customEvent:project_key' }
+      { name: 'sessionDefaultChannelGrouping' }
     ],
     orderBys: [
       { metric: { metricName: 'activeUsers' }, desc: true }
     ]
   };
 
-  const response = await fetch(
-    `https://analyticsdata.googleapis.com/v1beta/${PROPERTY_ID}:runReport`,
-    {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(requestBody)
-    }
-  );
+  const withProjectKey = {
+    ...baseRequestBody,
+    dimensions: [
+      ...baseRequestBody.dimensions,
+      { name: 'customEvent:project_key' }
+    ]
+  };
 
-  if (!response.ok) {
-    const error = await response.text();
-    throw new Error(`GA4 API error: ${response.status} - ${error}`);
+  async function runReport(requestBody) {
+    const response = await fetch(
+      `https://analyticsdata.googleapis.com/v1beta/${PROPERTY_ID}:runReport`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      const err = new Error(`GA4 API error: ${response.status} - ${errorText}`);
+      err.status = response.status;
+      err.raw = errorText;
+      throw err;
+    }
+
+    return response.json();
   }
 
-  return response.json();
+  try {
+    return await runReport(withProjectKey);
+  } catch (error) {
+    // Graceful fallback when custom event dimension is not yet registered in GA4.
+    if (error.status === 400 && String(error.raw || '').includes('customEvent:project_key')) {
+      console.log('  Note: custom dimension customEvent:project_key not available yet; fetching without project breakdown.');
+      return runReport(baseRequestBody);
+    }
+    throw error;
+  }
 }
 
 // Fetch realtime data

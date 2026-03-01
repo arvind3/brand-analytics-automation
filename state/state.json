@@ -1,6 +1,98 @@
 {
-  "last_updated": "2026-03-01T17:24:59.988Z",
+  "last_updated": "2026-03-01T21:33:40.898Z",
   "repos": [
+    {
+      "name": "brand-analytics-dashboard",
+      "full_name": "arvind3/brand-analytics-dashboard",
+      "classification": "CORE_PROJECT",
+      "eligible": true,
+      "strategy_applied": true,
+      "tracking_installed": true,
+      "drift_detected": false,
+      "last_applied_at": "2026-03-01T21:32:05.520Z",
+      "last_validated_at": null,
+      "dashboard_included": true,
+      "project_key": "brand-analytics-dashboard",
+      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\brand-analytics-dashboard\\analytics.config.json",
+      "gtm_snippet_path": [
+        "index.html"
+      ],
+      "repo_created_at": "2026-03-01T21:26:09Z",
+      "repo_pushed_at": "2026-03-01T21:26:41Z",
+      "errors": []
+    },
+    {
+      "name": "Private",
+      "full_name": "arvind3/Private",
+      "classification": "CORE_PROJECT",
+      "eligible": true,
+      "strategy_applied": true,
+      "tracking_installed": true,
+      "drift_detected": false,
+      "last_applied_at": "2026-03-01T20:47:37.865Z",
+      "last_validated_at": null,
+      "dashboard_included": true,
+      "project_key": "Private",
+      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\Private\\analytics.config.json",
+      "gtm_snippet_path": null,
+      "repo_created_at": "2021-05-22T09:47:48Z",
+      "repo_pushed_at": "2026-03-01T20:47:36Z",
+      "errors": []
+    },
+    {
+      "name": "az400m08l01",
+      "full_name": "arvind3/az400m08l01",
+      "classification": "CORE_PROJECT",
+      "eligible": true,
+      "strategy_applied": true,
+      "tracking_installed": true,
+      "drift_detected": false,
+      "last_applied_at": "2026-03-01T21:32:09.019Z",
+      "last_validated_at": null,
+      "dashboard_included": true,
+      "project_key": "az400m08l01",
+      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\az400m08l01\\analytics.config.json",
+      "gtm_snippet_path": null,
+      "repo_created_at": "2021-09-03T16:59:06Z",
+      "repo_pushed_at": "2026-03-01T20:47:34Z",
+      "errors": []
+    },
+    {
+      "name": "ReleaseDashboard",
+      "full_name": "arvind3/ReleaseDashboard",
+      "classification": "CORE_PROJECT",
+      "eligible": true,
+      "strategy_applied": true,
+      "tracking_installed": true,
+      "drift_detected": false,
+      "last_applied_at": "2026-03-01T21:32:11.374Z",
+      "last_validated_at": null,
+      "dashboard_included": true,
+      "project_key": "ReleaseDashboard",
+      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\ReleaseDashboard\\analytics.config.json",
+      "gtm_snippet_path": null,
+      "repo_created_at": "2021-09-04T05:09:36Z",
+      "repo_pushed_at": "2026-03-01T20:47:31Z",
+      "errors": []
+    },
+    {
+      "name": "GA4Skill",
+      "full_name": "arvind3/GA4Skill",
+      "classification": "CORE_PROJECT",
+      "eligible": true,
+      "strategy_applied": true,
+      "tracking_installed": true,
+      "drift_detected": false,
+      "last_applied_at": "2026-03-01T21:32:13.897Z",
+      "last_validated_at": null,
+      "dashboard_included": true,
+      "project_key": "GA4Skill",
+      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\GA4Skill\\analytics.config.json",
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-23T14:18:54Z",
+      "repo_pushed_at": "2026-03-01T20:47:28Z",
+      "errors": []
+    },
     {
       "name": "ai-explorer",
       "full_name": "arvind3/ai-explorer",
@@ -9,144 +101,44 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:11.677Z",
+      "last_applied_at": "2026-03-01T21:32:15.841Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "ai-explorer",
       "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\ai-explorer\\analytics.config.json",
       "gtm_snippet_path": [
         "404.html",
-        "index.html",
-        "docs\\index.html"
+        "docs\\capability.html",
+        "docs\\engineering.html",
+        "docs\\executive.html",
+        "docs\\index.html",
+        "docs\\product.html",
+        "index.html"
       ],
-      "errors": []
+      "repo_created_at": "2026-02-19T01:05:38Z",
+      "repo_pushed_at": "2026-03-01T20:47:24Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
-      "name": "anthropics-skills",
-      "full_name": "arvind3/anthropics-skills",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
+      "name": "brand-analytics-automation",
+      "full_name": "arvind3/brand-analytics-automation",
+      "classification": "CORE_PROJECT",
+      "eligible": true,
+      "strategy_applied": true,
+      "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": null,
+      "last_applied_at": "2026-03-01T21:32:19.845Z",
       "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "AZ400-DesigningandImplementingMicrosoftDevOpsSolutions",
-      "full_name": "arvind3/AZ400-DesigningandImplementingMicrosoftDevOpsSolutions",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "calculator",
-      "full_name": "arvind3/calculator",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "cheahjs-free-llm-api-resources",
-      "full_name": "arvind3/cheahjs-free-llm-api-resources",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "coTestPilot",
-      "full_name": "arvind3/coTestPilot",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "droidclaw",
-      "full_name": "arvind3/droidclaw",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "everything-claude-code",
-      "full_name": "arvind3/everything-claude-code",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "excalidraw-mcp-app",
-      "full_name": "arvind3/excalidraw-mcp-app",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
+      "dashboard_included": true,
+      "project_key": "brand-analytics-automation",
+      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\brand-analytics-automation\\analytics.config.json",
+      "gtm_snippet_path": [
+        "dashboard\\index.html"
+      ],
+      "repo_created_at": "2026-03-01T17:40:35Z",
+      "repo_pushed_at": "2026-03-01T20:47:22Z",
       "errors": []
     },
     {
@@ -157,7 +149,7 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:13.381Z",
+      "last_applied_at": "2026-03-01T21:32:21.634Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "factory",
@@ -165,7 +157,11 @@
       "gtm_snippet_path": [
         "docs\\index.html"
       ],
-      "errors": []
+      "repo_created_at": "2026-02-25T19:55:23Z",
+      "repo_pushed_at": "2026-03-01T20:47:18Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "fakerUI",
@@ -175,60 +171,41 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:15.973Z",
+      "last_applied_at": "2026-03-01T21:32:23.593Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "fakerUI",
       "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\fakerUI\\analytics.config.json",
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "FlowViz",
-      "full_name": "arvind3/FlowViz",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
+      "gtm_snippet_path": [
+        "web\\index.html",
+        "web\\public\\capability.html",
+        "web\\public\\engineering.html",
+        "web\\public\\executive.html",
+        "web\\public\\perspectives\\index.html",
+        "web\\public\\product.html"
+      ],
+      "repo_created_at": "2026-02-19T09:18:56Z",
+      "repo_pushed_at": "2026-03-01T20:47:16Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "Full-Stack-Integrated-Testing-Framework-",
       "full_name": "arvind3/Full-Stack-Integrated-Testing-Framework-",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
+      "classification": "CORE_PROJECT",
+      "eligible": true,
+      "strategy_applied": true,
+      "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": null,
+      "last_applied_at": "2026-03-01T21:32:25.406Z",
       "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
+      "dashboard_included": true,
+      "project_key": "Full-Stack-Integrated-Testing-Framework-",
+      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\Full-Stack-Integrated-Testing-Framework-\\analytics.config.json",
       "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "functions-headless-chromium",
-      "full_name": "arvind3/functions-headless-chromium",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
+      "repo_created_at": "2021-05-22T09:49:06Z",
+      "repo_pushed_at": "2026-03-01T20:47:14Z",
       "errors": []
     },
     {
@@ -239,15 +216,28 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:17.880Z",
+      "last_applied_at": "2026-03-01T21:32:27.250Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "github-different-pointofviews",
       "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\github-different-pointofviews\\analytics.config.json",
       "gtm_snippet_path": [
-        "docs\\index.html"
+        "docs\\capability.html",
+        "docs\\engineering.html",
+        "docs\\executive.html",
+        "docs\\index.html",
+        "docs\\product.html",
+        "docs\\retail_analytics\\capability.html",
+        "docs\\retail_analytics\\engineering.html",
+        "docs\\retail_analytics\\executive.html",
+        "docs\\retail_analytics\\index.html",
+        "docs\\retail_analytics\\product.html"
       ],
-      "errors": []
+      "repo_created_at": "2026-02-21T14:25:44Z",
+      "repo_pushed_at": "2026-03-01T20:47:12Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "github-repo-five-lenses",
@@ -257,78 +247,38 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:19.659Z",
+      "last_applied_at": "2026-03-01T21:32:29.131Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "github-repo-five-lenses",
       "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\github-repo-five-lenses\\analytics.config.json",
       "gtm_snippet_path": [
-        "docs\\index.html"
+        "docs\\index.html",
+        "repolens\\popup.html",
+        "repolens\\viewer.html"
       ],
-      "errors": []
+      "repo_created_at": "2026-02-21T16:01:07Z",
+      "repo_pushed_at": "2026-03-01T20:47:10Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "GroceryMerchandisingBook",
       "full_name": "arvind3/GroceryMerchandisingBook",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
+      "classification": "CORE_PROJECT",
+      "eligible": true,
+      "strategy_applied": true,
+      "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": null,
+      "last_applied_at": "2026-03-01T21:32:31.258Z",
       "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
+      "dashboard_included": true,
+      "project_key": "GroceryMerchandisingBook",
+      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\GroceryMerchandisingBook\\analytics.config.json",
       "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "jekyll-incorporated",
-      "full_name": "arvind3/jekyll-incorporated",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "klaw.sh",
-      "full_name": "arvind3/klaw.sh",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "kroki-mcp",
-      "full_name": "arvind3/kroki-mcp",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-26T22:22:38Z",
+      "repo_pushed_at": "2026-03-01T20:47:08Z",
       "errors": []
     },
     {
@@ -339,7 +289,7 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:21.618Z",
+      "last_applied_at": "2026-03-01T21:32:33.065Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "leadership-capability-portfolio",
@@ -347,7 +297,11 @@
       "gtm_snippet_path": [
         "index.html"
       ],
-      "errors": []
+      "repo_created_at": "2026-02-24T14:25:29Z",
+      "repo_pushed_at": "2026-03-01T20:47:05Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "merchandising-core-concepts-for-grocery-business",
@@ -357,109 +311,34 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:23.934Z",
+      "last_applied_at": "2026-03-01T21:32:49.760Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "merchandising-core-concepts-for-grocery-business",
       "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\merchandising-core-concepts-for-grocery-business\\analytics.config.json",
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "nullclaw",
-      "full_name": "arvind3/nullclaw",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "OpenAIWorkshop",
-      "full_name": "arvind3/OpenAIWorkshop",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "OpenSandbox",
-      "full_name": "arvind3/OpenSandbox",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "PhoneDriver",
-      "full_name": "arvind3/PhoneDriver",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "picoclaw",
-      "full_name": "arvind3/picoclaw",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "picolm",
-      "full_name": "arvind3/picolm",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
+      "gtm_snippet_path": [
+        "build\\404.html",
+        "build\\chapters\\chapter-01-introduction-to-grocery-merchandising.html",
+        "build\\chapters\\chapter-02-product-hierarchy-and-categorization.html",
+        "build\\chapters\\chapter-03-pricing-strategy-and-promotion-management.html",
+        "build\\chapters\\chapter-04-inventory-management-and-replenishment.html",
+        "build\\chapters\\chapter-05-supplier-management-and-procurement.html",
+        "build\\chapters\\chapter-06-store-operations-and-execution.html",
+        "build\\chapters\\chapter-07-data-and-analytics-in-merchandising.html",
+        "build\\chapters\\chapter-08-technology-systems-and-integration.html",
+        "build\\chapters\\chapter-09-quality-engineering-in-merchandising.html",
+        "build\\chapters\\chapter-10-future-trends-and-digital-transformation.html",
+        "build\\index.html",
+        "build\\resources\\about-author.html",
+        "build\\resources\\glossary.html",
+        "build\\resources\\references.html",
+        "playwright-report\\index.html"
+      ],
+      "repo_created_at": "2026-02-25T20:18:01Z",
+      "repo_pushed_at": "2026-03-01T20:47:03Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "Playwrite-CLI",
@@ -469,7 +348,7 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:25.812Z",
+      "last_applied_at": "2026-03-01T21:32:51.577Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "Playwrite-CLI",
@@ -477,7 +356,11 @@
       "gtm_snippet_path": [
         "index.html"
       ],
-      "errors": []
+      "repo_created_at": "2026-02-15T20:56:03Z",
+      "repo_pushed_at": "2026-03-01T20:46:51Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "PlaywriteClikBookWithIDE",
@@ -487,28 +370,14 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:27.871Z",
+      "last_applied_at": "2026-03-01T21:33:03.845Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "PlaywriteClikBookWithIDE",
       "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\PlaywriteClikBookWithIDE\\analytics.config.json",
       "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "PPTAgent",
-      "full_name": "arvind3/PPTAgent",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-22T16:05:26Z",
+      "repo_pushed_at": "2026-03-01T20:46:49Z",
       "errors": []
     },
     {
@@ -519,31 +388,24 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:29.941Z",
+      "last_applied_at": "2026-03-01T21:33:06.385Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "process-flow-write",
       "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\process-flow-write\\analytics.config.json",
       "gtm_snippet_path": [
-        "docs\\index.html"
+        "app\\index.html",
+        "docs\\index.html",
+        "docs\\reports\\20260221-120000\\flow.html",
+        "docs\\reports\\20260221-233945\\flow.html",
+        "docs\\reports\\latest\\flow.html",
+        "docs\\reports\\latest\\index.html"
       ],
-      "errors": []
-    },
-    {
-      "name": "pxt-maqueen",
-      "full_name": "arvind3/pxt-maqueen",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
+      "repo_created_at": "2026-02-21T19:06:31Z",
+      "repo_pushed_at": "2026-03-01T20:46:34Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "qa-intelligence-platform",
@@ -553,7 +415,7 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:31.689Z",
+      "last_applied_at": "2026-03-01T21:33:08.184Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "qa-intelligence-platform",
@@ -561,23 +423,11 @@
       "gtm_snippet_path": [
         "index.html"
       ],
-      "errors": []
-    },
-    {
-      "name": "relay",
-      "full_name": "arvind3/relay",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
+      "repo_created_at": "2026-02-24T20:39:44Z",
+      "repo_pushed_at": "2026-03-01T20:46:32Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "retail_analytics",
@@ -587,15 +437,24 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:35.022Z",
+      "last_applied_at": "2026-03-01T21:33:10.046Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "retail_analytics",
       "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\retail_analytics\\analytics.config.json",
       "gtm_snippet_path": [
+        "docs\\capability.html",
+        "docs\\engineering.html",
+        "docs\\executive.html",
+        "docs\\perspectives\\index.html",
+        "docs\\product.html",
         "index.html"
       ],
-      "errors": []
+      "repo_created_at": "2026-02-19T09:15:33Z",
+      "repo_pushed_at": "2026-03-01T20:46:30Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "robot-finetune-model",
@@ -605,13 +464,24 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:39.141Z",
+      "last_applied_at": "2026-03-01T21:33:11.986Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "robot-finetune-model",
       "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\robot-finetune-model\\analytics.config.json",
-      "gtm_snippet_path": null,
-      "errors": []
+      "gtm_snippet_path": [
+        "perspectives\\capability.html",
+        "perspectives\\engineering.html",
+        "perspectives\\executive.html",
+        "perspectives\\index.html",
+        "perspectives\\product.html",
+        "sources\\robotframework_docs\\official_docs_index.html"
+      ],
+      "repo_created_at": "2026-02-21T18:58:31Z",
+      "repo_pushed_at": "2026-03-01T20:46:28Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "robot-framework-ide",
@@ -621,7 +491,7 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:41.401Z",
+      "last_applied_at": "2026-03-01T21:33:13.848Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "robot-framework-ide",
@@ -629,7 +499,11 @@
       "gtm_snippet_path": [
         "index.html"
       ],
-      "errors": []
+      "repo_created_at": "2026-02-24T03:50:37Z",
+      "repo_pushed_at": "2026-03-01T20:46:26Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "robot-framework-py-skill",
@@ -639,14 +513,101 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:43.284Z",
+      "last_applied_at": "2026-03-01T21:33:15.618Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "robot-framework-py-skill",
       "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\robot-framework-py-skill\\analytics.config.json",
       "gtm_snippet_path": [
+        "docs\\engineering-blog.html",
         "docs\\index.html"
       ],
+      "repo_created_at": "2026-02-15T17:01:34Z",
+      "repo_pushed_at": "2026-03-01T20:46:24Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
+    },
+    {
+      "name": "semprademo-test",
+      "full_name": "arvind3/semprademo-test",
+      "classification": "CORE_PROJECT",
+      "eligible": true,
+      "strategy_applied": true,
+      "tracking_installed": true,
+      "drift_detected": false,
+      "last_applied_at": "2026-03-01T21:33:17.347Z",
+      "last_validated_at": null,
+      "dashboard_included": true,
+      "project_key": "semprademo-test",
+      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\semprademo-test\\analytics.config.json",
+      "gtm_snippet_path": null,
+      "repo_created_at": "2021-04-13T14:27:53Z",
+      "repo_pushed_at": "2026-03-01T20:46:22Z",
+      "errors": []
+    },
+    {
+      "name": "test",
+      "full_name": "arvind3/test",
+      "classification": "CORE_PROJECT",
+      "eligible": true,
+      "strategy_applied": true,
+      "tracking_installed": true,
+      "drift_detected": false,
+      "last_applied_at": "2026-03-01T21:33:20.336Z",
+      "last_validated_at": null,
+      "dashboard_included": true,
+      "project_key": "test",
+      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\test\\analytics.config.json",
+      "gtm_snippet_path": [
+        "index-backup.html",
+        "index.html",
+        "left-sidebar.html",
+        "no-sidebar.html",
+        "right-sidebar.html"
+      ],
+      "repo_created_at": "2017-09-05T04:09:06Z",
+      "repo_pushed_at": "2026-03-01T20:46:20Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
+    },
+    {
+      "name": "upptime",
+      "full_name": "arvind3/upptime",
+      "classification": "CORE_PROJECT",
+      "eligible": true,
+      "strategy_applied": true,
+      "tracking_installed": true,
+      "drift_detected": false,
+      "last_applied_at": "2026-03-01T20:12:44.549Z",
+      "last_validated_at": null,
+      "dashboard_included": true,
+      "project_key": "upptime",
+      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\upptime\\analytics.config.json",
+      "gtm_snippet_path": null,
+      "repo_created_at": "2022-04-21T17:40:10Z",
+      "repo_pushed_at": "2026-03-01T20:12:43Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
+    },
+    {
+      "name": "supplychain-coreconcepts-for-grocery-business",
+      "full_name": "arvind3/supplychain-coreconcepts-for-grocery-business",
+      "classification": "CORE_PROJECT",
+      "eligible": true,
+      "strategy_applied": true,
+      "tracking_installed": true,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": true,
+      "project_key": "supplychain-coreconcepts-for-grocery-business",
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-03-01T19:06:18Z",
+      "repo_pushed_at": "2026-03-01T20:02:17Z",
       "errors": []
     },
     {
@@ -657,61 +618,17 @@
       "strategy_applied": true,
       "tracking_installed": true,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:45.463Z",
+      "last_applied_at": "2026-03-01T20:11:03.488Z",
       "last_validated_at": null,
       "dashboard_included": true,
       "project_key": "RobotFrameworkBookWithIDE",
       "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\RobotFrameworkBookWithIDE\\analytics.config.json",
       "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "semprademo-test",
-      "full_name": "arvind3/semprademo-test",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "skills",
-      "full_name": "arvind3/skills",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
-    },
-    {
-      "name": "skills-best-practices",
-      "full_name": "arvind3/skills-best-practices",
-      "classification": "PASSIVE_CLONE",
-      "eligible": false,
-      "strategy_applied": false,
-      "tracking_installed": false,
-      "drift_detected": false,
-      "last_applied_at": null,
-      "last_validated_at": null,
-      "dashboard_included": false,
-      "project_key": null,
-      "analytics_config_path": null,
-      "gtm_snippet_path": null,
-      "errors": []
+      "repo_created_at": "2026-02-22T13:52:18Z",
+      "repo_pushed_at": "2026-03-01T19:47:12Z",
+      "errors": [
+        "Command failed: git checkout -b add-analytics-tracking\nfatal: A branch named 'add-analytics-tracking' already exists.\n"
+      ]
     },
     {
       "name": "SmolVM",
@@ -727,6 +644,8 @@
       "project_key": null,
       "analytics_config_path": null,
       "gtm_snippet_path": null,
+      "repo_created_at": "2026-03-01T01:54:53Z",
+      "repo_pushed_at": "2026-03-01T01:01:09Z",
       "errors": []
     },
     {
@@ -743,28 +662,188 @@
       "project_key": null,
       "analytics_config_path": null,
       "gtm_snippet_path": null,
+      "repo_created_at": "2026-03-01T11:33:48Z",
+      "repo_pushed_at": "2026-02-28T17:06:04Z",
       "errors": []
     },
     {
-      "name": "test",
-      "full_name": "arvind3/test",
-      "classification": "CORE_PROJECT",
-      "eligible": true,
-      "strategy_applied": true,
-      "tracking_installed": true,
+      "name": "OpenSandbox",
+      "full_name": "arvind3/OpenSandbox",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:49.042Z",
+      "last_applied_at": null,
       "last_validated_at": null,
-      "dashboard_included": true,
-      "project_key": "test",
-      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\test\\analytics.config.json",
-      "gtm_snippet_path": [
-        "index-backup.html",
-        "index.html",
-        "left-sidebar.html",
-        "no-sidebar.html",
-        "right-sidebar.html"
-      ],
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-03-01T01:55:46Z",
+      "repo_pushed_at": "2026-02-28T14:19:44Z",
+      "errors": []
+    },
+    {
+      "name": "skills-best-practices",
+      "full_name": "arvind3/skills-best-practices",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-26T23:16:06Z",
+      "repo_pushed_at": "2026-02-24T19:48:52Z",
+      "errors": []
+    },
+    {
+      "name": "picolm",
+      "full_name": "arvind3/picolm",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-25T01:19:21Z",
+      "repo_pushed_at": "2026-02-22T22:05:30Z",
+      "errors": []
+    },
+    {
+      "name": "OpenAIWorkshop",
+      "full_name": "arvind3/OpenAIWorkshop",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-20T02:17:52Z",
+      "repo_pushed_at": "2026-02-20T02:05:50Z",
+      "errors": []
+    },
+    {
+      "name": "nullclaw",
+      "full_name": "arvind3/nullclaw",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-18T23:12:12Z",
+      "repo_pushed_at": "2026-02-18T23:08:21Z",
+      "errors": []
+    },
+    {
+      "name": "klaw.sh",
+      "full_name": "arvind3/klaw.sh",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-17T02:34:15Z",
+      "repo_pushed_at": "2026-02-16T21:11:12Z",
+      "errors": []
+    },
+    {
+      "name": "droidclaw",
+      "full_name": "arvind3/droidclaw",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-17T01:11:47Z",
+      "repo_pushed_at": "2026-02-16T16:26:35Z",
+      "errors": []
+    },
+    {
+      "name": "anthropics-skills",
+      "full_name": "arvind3/anthropics-skills",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-15T16:07:56Z",
+      "repo_pushed_at": "2026-02-15T17:42:28Z",
+      "errors": []
+    },
+    {
+      "name": "skills",
+      "full_name": "arvind3/skills",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-15T03:14:30Z",
+      "repo_pushed_at": "2026-02-15T16:19:49Z",
+      "errors": []
+    },
+    {
+      "name": "picoclaw",
+      "full_name": "arvind3/picoclaw",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-14T20:18:27Z",
+      "repo_pushed_at": "2026-02-14T19:07:20Z",
       "errors": []
     },
     {
@@ -781,22 +860,26 @@
       "project_key": null,
       "analytics_config_path": null,
       "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-14T23:01:17Z",
+      "repo_pushed_at": "2026-02-14T14:57:22Z",
       "errors": []
     },
     {
-      "name": "upptime",
-      "full_name": "arvind3/upptime",
-      "classification": "CORE_PROJECT",
-      "eligible": true,
-      "strategy_applied": true,
-      "tracking_installed": true,
+      "name": "PPTAgent",
+      "full_name": "arvind3/PPTAgent",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
       "drift_detected": false,
-      "last_applied_at": "2026-03-01T17:23:52.314Z",
+      "last_applied_at": null,
       "last_validated_at": null,
-      "dashboard_included": true,
-      "project_key": "upptime",
-      "analytics_config_path": "C:\\Users\\arvin\\brand-analytics-automation\\.repo-cache\\upptime\\analytics.config.json",
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
       "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-15T13:02:42Z",
+      "repo_pushed_at": "2026-02-12T12:44:13Z",
       "errors": []
     },
     {
@@ -813,166 +896,473 @@
       "project_key": null,
       "analytics_config_path": null,
       "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-19T00:35:24Z",
+      "repo_pushed_at": "2026-02-10T14:59:43Z",
+      "errors": []
+    },
+    {
+      "name": "excalidraw-mcp-app",
+      "full_name": "arvind3/excalidraw-mcp-app",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-07T00:58:28Z",
+      "repo_pushed_at": "2026-02-06T19:30:09Z",
+      "errors": []
+    },
+    {
+      "name": "relay",
+      "full_name": "arvind3/relay",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-07T00:06:11Z",
+      "repo_pushed_at": "2026-02-06T14:27:47Z",
+      "errors": []
+    },
+    {
+      "name": "everything-claude-code",
+      "full_name": "arvind3/everything-claude-code",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-01-31T03:02:23Z",
+      "repo_pushed_at": "2026-01-30T18:24:13Z",
+      "errors": []
+    },
+    {
+      "name": "PhoneDriver",
+      "full_name": "arvind3/PhoneDriver",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-03-01T11:28:20Z",
+      "repo_pushed_at": "2025-10-24T18:34:21Z",
+      "errors": []
+    },
+    {
+      "name": "kroki-mcp",
+      "full_name": "arvind3/kroki-mcp",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-17T03:01:22Z",
+      "repo_pushed_at": "2025-05-05T12:22:01Z",
+      "errors": []
+    },
+    {
+      "name": "coTestPilot",
+      "full_name": "arvind3/coTestPilot",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2025-08-03T22:14:20Z",
+      "repo_pushed_at": "2025-01-28T00:19:02Z",
+      "errors": []
+    },
+    {
+      "name": "cheahjs-free-llm-api-resources",
+      "full_name": "arvind3/cheahjs-free-llm-api-resources",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2026-02-23T23:56:57Z",
+      "repo_pushed_at": "2024-12-08T13:28:11Z",
+      "errors": []
+    },
+    {
+      "name": "FlowViz",
+      "full_name": "arvind3/FlowViz",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2021-08-26T07:40:30Z",
+      "repo_pushed_at": "2021-09-09T03:18:31Z",
+      "errors": []
+    },
+    {
+      "name": "calculator",
+      "full_name": "arvind3/calculator",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2021-09-03T16:19:10Z",
+      "repo_pushed_at": "2021-09-03T16:44:25Z",
+      "errors": []
+    },
+    {
+      "name": "AZ400-DesigningandImplementingMicrosoftDevOpsSolutions",
+      "full_name": "arvind3/AZ400-DesigningandImplementingMicrosoftDevOpsSolutions",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2021-09-04T06:31:57Z",
+      "repo_pushed_at": "2021-09-03T06:12:20Z",
+      "errors": []
+    },
+    {
+      "name": "functions-headless-chromium",
+      "full_name": "arvind3/functions-headless-chromium",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2021-09-08T14:05:21Z",
+      "repo_pushed_at": "2020-09-26T06:35:28Z",
+      "errors": []
+    },
+    {
+      "name": "pxt-maqueen",
+      "full_name": "arvind3/pxt-maqueen",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2019-06-19T02:52:38Z",
+      "repo_pushed_at": "2019-06-19T02:53:57Z",
+      "errors": []
+    },
+    {
+      "name": "jekyll-incorporated",
+      "full_name": "arvind3/jekyll-incorporated",
+      "classification": "PASSIVE_CLONE",
+      "eligible": false,
+      "strategy_applied": false,
+      "tracking_installed": false,
+      "drift_detected": false,
+      "last_applied_at": null,
+      "last_validated_at": null,
+      "dashboard_included": false,
+      "project_key": null,
+      "analytics_config_path": null,
+      "gtm_snippet_path": null,
+      "repo_created_at": "2016-01-28T17:52:14Z",
+      "repo_pushed_at": "2015-10-17T09:58:52Z",
       "errors": []
     }
   ],
   "summary": {
-    "total_repos_scanned": 49,
-    "total_eligible_repos": 18,
-    "excluded_passive_clones": 31,
-    "already_implemented": 0,
-    "net_new_implemented": 18,
-    "drift_repaired": 0,
-    "failed": 0
+    "total_repos_scanned": 56,
+    "total_eligible_repos": 28,
+    "excluded_passive_clones": 28,
+    "already_implemented": 4,
+    "net_new_implemented": 1,
+    "drift_repaired": 23,
+    "failed": 0,
+    "test_failed": 0
   },
   "dashboard": {
-    "last_updated": "2026-03-01T17:23:52.316Z",
-    "last_validated": "2026-03-01T17:24:59.986Z",
-    "validation_passed": false,
-    "projects_count": 18,
+    "last_updated": "2026-03-01T21:33:22.072Z",
+    "last_validated": "2026-03-01T21:33:40.897Z",
+    "validation_passed": true,
+    "projects_count": 28,
     "projects": [
+      {
+        "name": "brand-analytics-dashboard",
+        "full_name": "arvind3/brand-analytics-dashboard",
+        "project_key": "brand-analytics-dashboard",
+        "tracking_installed": true,
+        "last_updated": "2026-03-01T21:32:05.520Z"
+      },
+      {
+        "name": "Private",
+        "full_name": "arvind3/Private",
+        "project_key": "Private",
+        "tracking_installed": true,
+        "last_updated": "2026-03-01T20:47:37.865Z"
+      },
+      {
+        "name": "az400m08l01",
+        "full_name": "arvind3/az400m08l01",
+        "project_key": "az400m08l01",
+        "tracking_installed": true,
+        "last_updated": "2026-03-01T21:32:09.019Z"
+      },
+      {
+        "name": "ReleaseDashboard",
+        "full_name": "arvind3/ReleaseDashboard",
+        "project_key": "ReleaseDashboard",
+        "tracking_installed": true,
+        "last_updated": "2026-03-01T21:32:11.374Z"
+      },
+      {
+        "name": "GA4Skill",
+        "full_name": "arvind3/GA4Skill",
+        "project_key": "GA4Skill",
+        "tracking_installed": true,
+        "last_updated": "2026-03-01T21:32:13.897Z"
+      },
       {
         "name": "ai-explorer",
         "full_name": "arvind3/ai-explorer",
         "project_key": "ai-explorer",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:11.677Z"
+        "last_updated": "2026-03-01T21:32:15.841Z"
+      },
+      {
+        "name": "brand-analytics-automation",
+        "full_name": "arvind3/brand-analytics-automation",
+        "project_key": "brand-analytics-automation",
+        "tracking_installed": true,
+        "last_updated": "2026-03-01T21:32:19.845Z"
       },
       {
         "name": "factory",
         "full_name": "arvind3/factory",
         "project_key": "factory",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:13.381Z"
+        "last_updated": "2026-03-01T21:32:21.634Z"
       },
       {
         "name": "fakerUI",
         "full_name": "arvind3/fakerUI",
         "project_key": "fakerUI",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:15.973Z"
+        "last_updated": "2026-03-01T21:32:23.593Z"
+      },
+      {
+        "name": "Full-Stack-Integrated-Testing-Framework-",
+        "full_name": "arvind3/Full-Stack-Integrated-Testing-Framework-",
+        "project_key": "Full-Stack-Integrated-Testing-Framework-",
+        "tracking_installed": true,
+        "last_updated": "2026-03-01T21:32:25.406Z"
       },
       {
         "name": "github-different-pointofviews",
         "full_name": "arvind3/github-different-pointofviews",
         "project_key": "github-different-pointofviews",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:17.880Z"
+        "last_updated": "2026-03-01T21:32:27.250Z"
       },
       {
         "name": "github-repo-five-lenses",
         "full_name": "arvind3/github-repo-five-lenses",
         "project_key": "github-repo-five-lenses",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:19.659Z"
+        "last_updated": "2026-03-01T21:32:29.131Z"
+      },
+      {
+        "name": "GroceryMerchandisingBook",
+        "full_name": "arvind3/GroceryMerchandisingBook",
+        "project_key": "GroceryMerchandisingBook",
+        "tracking_installed": true,
+        "last_updated": "2026-03-01T21:32:31.258Z"
       },
       {
         "name": "leadership-capability-portfolio",
         "full_name": "arvind3/leadership-capability-portfolio",
         "project_key": "leadership-capability-portfolio",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:21.618Z"
+        "last_updated": "2026-03-01T21:32:33.065Z"
       },
       {
         "name": "merchandising-core-concepts-for-grocery-business",
         "full_name": "arvind3/merchandising-core-concepts-for-grocery-business",
         "project_key": "merchandising-core-concepts-for-grocery-business",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:23.934Z"
+        "last_updated": "2026-03-01T21:32:49.760Z"
       },
       {
         "name": "Playwrite-CLI",
         "full_name": "arvind3/Playwrite-CLI",
         "project_key": "Playwrite-CLI",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:25.812Z"
+        "last_updated": "2026-03-01T21:32:51.577Z"
       },
       {
         "name": "PlaywriteClikBookWithIDE",
         "full_name": "arvind3/PlaywriteClikBookWithIDE",
         "project_key": "PlaywriteClikBookWithIDE",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:27.871Z"
+        "last_updated": "2026-03-01T21:33:03.845Z"
       },
       {
         "name": "process-flow-write",
         "full_name": "arvind3/process-flow-write",
         "project_key": "process-flow-write",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:29.941Z"
+        "last_updated": "2026-03-01T21:33:06.385Z"
       },
       {
         "name": "qa-intelligence-platform",
         "full_name": "arvind3/qa-intelligence-platform",
         "project_key": "qa-intelligence-platform",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:31.689Z"
+        "last_updated": "2026-03-01T21:33:08.184Z"
       },
       {
         "name": "retail_analytics",
         "full_name": "arvind3/retail_analytics",
         "project_key": "retail_analytics",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:35.022Z"
+        "last_updated": "2026-03-01T21:33:10.046Z"
       },
       {
         "name": "robot-finetune-model",
         "full_name": "arvind3/robot-finetune-model",
         "project_key": "robot-finetune-model",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:39.141Z"
+        "last_updated": "2026-03-01T21:33:11.986Z"
       },
       {
         "name": "robot-framework-ide",
         "full_name": "arvind3/robot-framework-ide",
         "project_key": "robot-framework-ide",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:41.401Z"
+        "last_updated": "2026-03-01T21:33:13.848Z"
       },
       {
         "name": "robot-framework-py-skill",
         "full_name": "arvind3/robot-framework-py-skill",
         "project_key": "robot-framework-py-skill",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:43.284Z"
+        "last_updated": "2026-03-01T21:33:15.618Z"
       },
       {
-        "name": "RobotFrameworkBookWithIDE",
-        "full_name": "arvind3/RobotFrameworkBookWithIDE",
-        "project_key": "RobotFrameworkBookWithIDE",
+        "name": "semprademo-test",
+        "full_name": "arvind3/semprademo-test",
+        "project_key": "semprademo-test",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:45.463Z"
+        "last_updated": "2026-03-01T21:33:17.347Z"
       },
       {
         "name": "test",
         "full_name": "arvind3/test",
         "project_key": "test",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:49.042Z"
+        "last_updated": "2026-03-01T21:33:20.336Z"
       },
       {
         "name": "upptime",
         "full_name": "arvind3/upptime",
         "project_key": "upptime",
         "tracking_installed": true,
-        "last_updated": "2026-03-01T17:23:52.314Z"
+        "last_updated": "2026-03-01T20:12:44.549Z"
+      },
+      {
+        "name": "supplychain-coreconcepts-for-grocery-business",
+        "full_name": "arvind3/supplychain-coreconcepts-for-grocery-business",
+        "project_key": "supplychain-coreconcepts-for-grocery-business",
+        "tracking_installed": true,
+        "last_updated": null
+      },
+      {
+        "name": "RobotFrameworkBookWithIDE",
+        "full_name": "arvind3/RobotFrameworkBookWithIDE",
+        "project_key": "RobotFrameworkBookWithIDE",
+        "tracking_installed": true,
+        "last_updated": "2026-03-01T20:11:03.488Z"
       }
     ]
   },
   "ga4": {
     "property_id": null,
-    "measurement_id": null,
+    "measurement_id": "G-TGC17M8DH9",
     "data_stream_id": null,
     "custom_dimension_created": false,
     "created": false,
-    "error": "Google auth token not found. Set up GOOGLE_APPLICATION_CREDENTIALS."
+    "error": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON"
   },
   "gtm": {
-    "container_id": null,
+    "container_id": "GTM-MKBT6R73",
     "published_version": null,
     "last_published_at": null,
     "created": false,
-    "error": "Google auth token not found. Set up GOOGLE_APPLICATION_CREDENTIALS."
+    "error": "Could not find GTM account ID. Please configure account_id_optional in config."
   },
   "proxy": {
     "worker_url": "https://brand-analytics-proxy.<subdomain>.workers.dev (placeholder)",

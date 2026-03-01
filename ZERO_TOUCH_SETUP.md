@@ -49,7 +49,7 @@ This guide sets up a **fully automated dashboard** that:
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                  Google Analytics 4                          │
-│            Property ID: 385311652                            │
+│            Property ID: 525629873                            │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -59,7 +59,7 @@ This guide sets up a **fully automated dashboard** that:
 
 - GitHub account (you have: @arvind3)
 - Google Gmail account (you have)
-- GA4 property (you have: 385311652)
+- GA4 property (you have: 525629873)
 - Node.js 18+ installed locally
 
 ---
@@ -142,7 +142,7 @@ npm run setup:secrets
 This will guide you through setting up:
 - `GOOGLE_OAUTH_CREDENTIALS` - Your OAuth client JSON
 - `GOOGLE_REFRESH_TOKEN` - Your refresh token
-- `GA4_PROPERTY_ID` - Your property ID (385311652)
+- `GA4_PROPERTY_ID` - Your property ID (525629873)
 
 **Manual Alternative** (if script doesn't work):
 
@@ -157,7 +157,7 @@ This will guide you through setting up:
    - Paste the refresh_token from `.ga4-token.json`
 
    **GA4_PROPERTY_ID**
-   - Value: `385311652`
+   - Value: `525629873`
 
 ---
 

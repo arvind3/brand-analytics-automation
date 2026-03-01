@@ -43,10 +43,11 @@ async function pushDashboard() {
 
   // Checkout or create gh-pages branch
   console.log('\nSwitching to gh-pages branch...');
-  run(`git checkout gh-pages`, { cwd: DASHBOARD_REPO, ignoreError: true });
-  if (run(`git rev-parse --abbrev-ref HEAD`, { cwd: DASHBOARD_REPO }).trim() !== 'gh-pages') {
+  const checkoutResult = run(`git checkout gh-pages`, { cwd: DASHBOARD_REPO, ignoreError: true });
+  const currentBranch = run(`git rev-parse --abbrev-ref HEAD`, { cwd: DASHBOARD_REPO, ignoreError: true });
+  if (!checkoutResult || !currentBranch || currentBranch.trim() !== 'gh-pages') {
     run(`git checkout --orphan gh-pages`, { cwd: DASHBOARD_REPO });
-    run(`git rm -rf .`, { cwd: DASHBOARD_REPO });
+    run(`git rm -rf .`, { cwd: DASHBOARD_REPO, ignoreError: true });
   }
 
   // Copy dashboard files

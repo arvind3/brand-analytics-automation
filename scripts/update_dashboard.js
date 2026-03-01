@@ -44,6 +44,38 @@ async function updateDashboard(config, state) {
   fs.writeFileSync(projectsConfigPath, JSON.stringify(projectsConfig, null, 2));
   console.log(`  Updated projects.json with ${projects.length} projects.`);
 
+  const periods = ['7days', '30days', '90days'];
+  for (const period of periods) {
+    const dataPath = path.join(dashboardDir, `data-${period}.json`);
+    if (!fs.existsSync(dataPath)) {
+      const fallback = {
+        generatedAt: new Date().toISOString(),
+        period,
+        startDate: `${period}Ago`,
+        endDate: 'today',
+        summary: {
+          totalUsers: 0,
+          totalPageViews: 0,
+          totalSessions: 0,
+          avgSessionDuration: 0,
+          engagementRate: 0
+        },
+        byCountry: [],
+        byDevice: [],
+        bySource: [],
+        byProject: projects.map(project => ({
+          projectKey: project.project_key,
+          users: 0,
+          pageViews: 0
+        })),
+        realtime: {
+          activeUsers: 0
+        }
+      };
+      fs.writeFileSync(dataPath, JSON.stringify(fallback, null, 2));
+    }
+  }
+
   // In a full implementation, we would:
   // 1. Clone/fetch dashboard repo
   // 2. Update projects.json in the repo

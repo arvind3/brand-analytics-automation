@@ -9,6 +9,18 @@
 let currentDateRange = '30days';
 let charts = {};
 let analyticsData = null;
+const cacheBust = Date.now();
+
+async function fetchJson(path) {
+  const separator = path.includes('?') ? '&' : '?';
+  const response = await fetch(`${path}${separator}ts=${cacheBust}`, {
+    cache: 'no-store'
+  });
+  if (!response.ok) {
+    throw new Error(`Request failed (${response.status}) for ${path}`);
+  }
+  return response.json();
+}
 
 // Initialize dashboard
 document.addEventListener('DOMContentLoaded', async () => {
@@ -30,8 +42,7 @@ function updateDateRange() {
 // Load projects list
 async function loadProjects() {
   try {
-    const response = await fetch('projects.json');
-    const data = await response.json();
+    const data = await fetchJson('projects.json');
 
     const projectsGrid = document.getElementById('projects-grid');
 
@@ -63,11 +74,7 @@ async function loadProjects() {
 async function loadAnalytics() {
   try {
     // Load pre-fetched GA4 data
-    const response = await fetch(`data-${currentDateRange}.json`);
-    if (!response.ok) {
-      throw new Error(`No data available for ${currentDateRange}. Run: npm run fetch:data`);
-    }
-    analyticsData = await response.json();
+    analyticsData = await fetchJson(`data-${currentDateRange}.json`);
 
     // Update metric cards
     document.getElementById('total-users').textContent = formatNumber(analyticsData.summary.totalUsers);
@@ -99,12 +106,9 @@ async function loadRealtimeUsers() {
       document.getElementById('realtime-users').textContent = analyticsData.realtime.activeUsers;
     } else {
       // Try loading 7days data which has realtime
-      const response = await fetch('data-7days.json');
-      if (response.ok) {
-        const data = await response.json();
-        if (data.realtime) {
-          document.getElementById('realtime-users').textContent = data.realtime.activeUsers;
-        }
+      const data = await fetchJson('data-7days.json');
+      if (data.realtime) {
+        document.getElementById('realtime-users').textContent = data.realtime.activeUsers;
       }
     }
   } catch (error) {
@@ -265,9 +269,9 @@ function updateTimelineChart(timeData) {
     date.setDate(date.getDate() - i);
     labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
 
-    // Use mock data or real data
+    // Use only real data. Fill missing dates with 0 to avoid synthetic metrics.
     const dayData = timeData.find(d => d.date === date.toISOString().split('T')[0]);
-    data.push(dayData ? dayData.users : Math.floor(Math.random() * 100) + 20);
+    data.push(dayData ? dayData.users : 0);
   }
 
   charts.timeline = new Chart(ctx, {

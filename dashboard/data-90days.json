@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-03-01T21:35:13.482Z",
+  "period": "90days",
+  "startDate": "90daysAgo",
+  "endDate": "today",
+  "summary": {
+    "totalUsers": 141,
+    "totalPageViews": 328,
+    "totalSessions": 156,
+    "avgSessionDuration": 724,
+    "engagementRate": 16.7
+  },
+  "byCountry": [
+    {
+      "country": "United States",
+      "users": 134
+    },
+    {
+      "country": "India",
+      "users": 7
+    }
+  ],
+  "byDevice": [
+    {
+      "device": "desktop",
+      "users": 131
+    },
+    {
+      "device": "mobile",
+      "users": 10
+    }
+  ],
+  "bySource": [
+    {
+      "source": "Direct",
+      "sessions": 121
+    },
+    {
+      "source": "Unassigned",
+      "sessions": 35
+    }
+  ],
+  "byProject": [
+    {
+      "projectKey": "Unknown",
+      "users": 141,
+      "pageViews": 328
+    }
+  ],
+  "realtime": null
+}

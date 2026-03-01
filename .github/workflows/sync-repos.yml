@@ -1,0 +1,43 @@
+name: Sync Repos Tracking
+
+on:
+  schedule:
+    - cron: '15 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync-repos:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout automation repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync repos and apply tracking
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_SYNC_TOKEN }}
+        run: |
+          if [ -z "$GITHUB_TOKEN" ]; then
+            echo "REPO_SYNC_TOKEN is required to push to multiple repositories."
+            exit 1
+          fi
+          npm run apply
+
+      - name: Upload latest report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: apply-report
+          path: reports/latest.json
+          if-no-files-found: warn

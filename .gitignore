@@ -16,6 +16,8 @@ yarn.lock
 *.key
 service-account*.json
 credentials.json
+google-oauth-credentials.json
+.ga4-token.json
 
 # Logs
 logs/

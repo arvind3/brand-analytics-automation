@@ -184,7 +184,7 @@ Your dashboard shows:
 - **Traffic Sources** - Organic, Direct, Referral, etc.
 - **Top Projects** - Per-project analytics (by project_key)
 
-All data comes from your GA4 property: `385311652`
+All data comes from your GA4 property: `525629873`
 
 ---
 

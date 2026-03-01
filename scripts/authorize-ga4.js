@@ -33,7 +33,9 @@ function loadCredentials() {
     console.error('https://console.cloud.google.com/apis/credentials\n');
     process.exit(1);
   }
-  return JSON.parse(fs.readFileSync(CREDENTIALS_FILE, 'utf8'));
+  const parsed = JSON.parse(fs.readFileSync(CREDENTIALS_FILE, 'utf8'));
+  // Support both flattened credentials and Google's default { web: {...} } format.
+  return parsed.web || parsed.installed || parsed;
 }
 
 // Generate authorization URL

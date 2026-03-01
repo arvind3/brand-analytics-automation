@@ -51,6 +51,7 @@ function loadState(statePath = STATE_PATH) {
         already_implemented: 0,
         net_new_implemented: 0,
         drift_repaired: 0,
+        test_failed: 0,
         failed: 0
       },
       dashboard: {
@@ -89,6 +90,8 @@ function parseArgs(args) {
     dryRun: false,
     apply: false,
     validate: false,
+    force: false,
+    skipTests: false,
     config: CONFIG_PATH,
     includeFilter: '*',
     excludeFilter: ''
@@ -99,6 +102,8 @@ function parseArgs(args) {
     if (arg === '--dry-run') parsed.dryRun = true;
     else if (arg === '--apply') parsed.apply = true;
     else if (arg === '--validate') parsed.validate = true;
+    else if (arg === '--force') parsed.force = true;
+    else if (arg === '--skip-tests') parsed.skipTests = true;
     else if (arg === '--config' && args[i + 1]) {
       parsed.config = args[++i];
     } else if (arg === '--include-filter' && args[i + 1]) {
@@ -125,6 +130,8 @@ Options:
   --dry-run         Simulate actions without making changes
   --apply           Execute all automation steps
   --validate        Run validation tests only
+  --force           Re-process repos even when already implemented
+  --skip-tests      Skip repo build/validation tests before push (not recommended)
   --config <path>   Path to configuration file (default: config/brand.config.json)
   --include-filter  Glob pattern to include repos (default: *)
   --exclude-filter  Glob pattern to exclude repos (default: empty)
@@ -138,11 +145,35 @@ Examples:
 `);
 }
 
+function mergeDiscoveryWithState(discoveredRepos, previousRepos = []) {
+  const previousByFullName = new Map(previousRepos.map(repo => [repo.full_name, repo]));
+
+  return discoveredRepos.map(repo => {
+    const prev = previousByFullName.get(repo.full_name);
+    if (!prev) {
+      return repo;
+    }
+
+    return {
+      ...repo,
+      strategy_applied: prev.strategy_applied ?? repo.strategy_applied,
+      tracking_installed: prev.tracking_installed ?? repo.tracking_installed,
+      drift_detected: prev.drift_detected ?? repo.drift_detected,
+      last_applied_at: prev.last_applied_at ?? repo.last_applied_at,
+      last_validated_at: prev.last_validated_at ?? repo.last_validated_at,
+      analytics_config_path: prev.analytics_config_path ?? repo.analytics_config_path,
+      gtm_snippet_path: prev.gtm_snippet_path ?? repo.gtm_snippet_path,
+      errors: Array.isArray(prev.errors) && prev.errors.length > 0 ? prev.errors : repo.errors
+    };
+  });
+}
+
 // Main execution
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const config = loadConfig(args.config);
   let state = loadState();
+  const previousRepos = state.repos || [];
 
   console.log('='.repeat(60));
   console.log('Brand Analytics Automation');
@@ -167,7 +198,7 @@ async function main() {
       includeFilter: args.includeFilter,
       excludeFilter: args.excludeFilter
     });
-    state.repos = discoveryResult.repos;
+    state.repos = mergeDiscoveryWithState(discoveryResult.repos, previousRepos);
     state.summary.total_repos_scanned = discoveryResult.total;
     state.summary.total_eligible_repos = discoveryResult.eligible;
     state.summary.excluded_passive_clones = discoveryResult.excluded;
@@ -217,13 +248,28 @@ async function main() {
     report.steps.push({ name: 'ensure_gtm', result: gtmResult });
     console.log(`  Container ID: ${gtmResult.container_id || 'existing'}`);
 
+    // Override with config values if API setup failed (uses existing GA4/GTM)
+    if (config.ga4?.measurement_id_optional) {
+      state.ga4.measurement_id = config.ga4.measurement_id_optional;
+      console.log(`  Using GA4 Measurement ID from config: ${state.ga4.measurement_id}`);
+    }
+    if (config.gtm?.container_id_optional) {
+      state.gtm.container_id = config.gtm.container_id_optional;
+      console.log(`  Using GTM Container ID from config: ${state.gtm.container_id}`);
+    }
+
     // Step 4: Apply changes to repos
     console.log('\n[Step 4] Applying changes to repositories...');
-    const applyResult = await applyRepoChanges(config, state);
+    const applyResult = await applyRepoChanges(config, state, {
+      dryRun: args.dryRun,
+      force: args.force,
+      skipTests: args.skipTests
+    });
     state.repos = applyResult.updatedRepos;
     state.summary.already_implemented = applyResult.alreadyImplemented;
     state.summary.net_new_implemented = applyResult.netNewImplemented;
     state.summary.drift_repaired = applyResult.driftRepaired;
+    state.summary.test_failed = applyResult.testFailed;
     state.summary.failed = applyResult.failed;
     report.steps.push({ name: 'apply_repo_changes', result: applyResult });
     console.log(`  Already implemented: ${applyResult.alreadyImplemented}`);
@@ -263,6 +309,7 @@ async function main() {
     console.log(`ALREADY_IMPLEMENTED=${state.summary.already_implemented}`);
     console.log(`NET_NEW_IMPLEMENTED=${state.summary.net_new_implemented}`);
     console.log(`DRIFT_REPAIRED=${state.summary.drift_repaired}`);
+    console.log(`TEST_FAILED=${state.summary.test_failed}`);
     console.log(`FAILED=${state.summary.failed}`);
     console.log(`DASHBOARD_VALIDATION=${validationResult.passed ? 'PASS' : 'FAIL'}`);
 

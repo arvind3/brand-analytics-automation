@@ -8,6 +8,7 @@
  */
 
 const { execSync } = require('child_process');
+const { getGoogleAuthToken } = require('./google-auth');
 
 async function ensureGA4(config, state = {}) {
   const ga4Config = config.ga4 || {};
@@ -29,7 +30,7 @@ async function ensureGA4(config, state = {}) {
 
   // Try to find existing property by name
   try {
-    const token = getGoogleAuthToken();
+    const token = await getGoogleAuthToken();
     if (token) {
       const existingProperty = await findGA4PropertyByName(token, propertyName);
       if (existingProperty) {
@@ -71,9 +72,9 @@ async function ensureGA4(config, state = {}) {
   console.log('  Creating new GA4 property...');
 
   try {
-    const token = getGoogleAuthToken();
+    const token = await getGoogleAuthToken();
     if (!token) {
-      throw new Error('Google auth token not found. Set up GOOGLE_APPLICATION_CREDENTIALS.');
+      throw new Error('Google OAuth token not found. Run: npm run auth:ga4.');
     }
 
     // Create property via GA4 Admin API
@@ -102,25 +103,6 @@ async function ensureGA4(config, state = {}) {
       error: error.message
     };
   }
-}
-
-// Get Google Auth token
-function getGoogleAuthToken() {
-  // Check for service account credentials
-  const credsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-  if (credsPath) {
-    try {
-      const fs = require('fs');
-      const creds = JSON.parse(fs.readFileSync(credsPath, 'utf8'));
-      // For service account, we'd need to generate JWT - simplified here
-      return null; // Would need google-auth-library for proper implementation
-    } catch (e) {
-      return null;
-    }
-  }
-
-  // Check for OAuth token
-  return process.env.GOOGLE_OAUTH_TOKEN || null;
 }
 
 // Find existing property by name

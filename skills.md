@@ -92,6 +92,9 @@ For each **net-new eligible repo**:
    - Commit: `chore: Add analytics tracking [brand-analytics-automation]`
    - Push to GitHub
    - PR URL provided for review
+7. **Coverage validation**:
+   - Validate GTM container ID + GA4 measurement ID on all HTML pages in processed repos
+   - Record summary in `reports/final-validation.json`
 
 ### Phase 4: Dashboard Update (Automatic)
 
@@ -100,13 +103,18 @@ For each **net-new eligible repo**:
    - Fetch fresh GA4 data using stored OAuth token
    - Generate `data-7days.json`, `data-30days.json`, `data-90days.json`
    - Deploy to GitHub Pages (gh-pages branch)
-3. Dashboard live at: `https://<username>.github.io/brand-analytics-automation/`
+3. Dashboard live at: `https://<username>.github.io/brand-analytics-dashboard/`
+4. Repo sync workflow (`.github/workflows/sync-repos.yml`) runs daily and can be dispatched manually
 
 ### Phase 5: Validation (Final Check)
 
 1. Verify state.json updated
 2. Print final report with counts
 3. List failed repos with reasons
+4. Run `npm run validate:final` to verify:
+   - eligible repos have tracking installed
+   - all HTML pages in processed repos include GTM and GA4 IDs
+   - dashboard project count equals installed repo count
 
 ---
 
@@ -238,6 +246,9 @@ npm run apply -- --skip-tests
 # Validate only
 npm run validate
 
+# Final UI/count/tag validation
+npm run validate:final
+
 # Fetch fresh GA4 data (for dashboard)
 npm run fetch:data
 
@@ -257,6 +268,7 @@ npm install
 
 # Ensure auth
 gh auth login --scopes repo,read:user,user:email
+export GITHUB_TOKEN=$(gh auth token)
 npm run auth:ga4
 
 # Run skill
@@ -319,7 +331,7 @@ cat reports/latest.json
 
 ## Dashboard Behavior
 
-The dashboard at `https://arvind3.github.io/brand-analytics-automation/`:
+The dashboard at `https://arvind3.github.io/brand-analytics-dashboard/`:
 
 1. **Auto-updates daily** via GitHub Actions (6 AM UTC)
 2. **Fetches real GA4 data** on page load (from pre-generated JSON)

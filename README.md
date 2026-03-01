@@ -57,11 +57,16 @@ export GITHUB_TOKEN="your_token"
 3. Enable APIs:
    - Google Analytics Admin API
    - Google Tag Manager API
-4. Create OAuth credentials or service account
-5. Download credentials JSON
-6. Set environment variable:
+4. Create OAuth credentials (Web application)
+5. Add redirect URI: `http://localhost:8080/oauth2callback`
+6. Download credentials JSON as `google-oauth-credentials.json` in repo root
+7. Authorize locally:
    ```bash
-   export GOOGLE_APPLICATION_CREDENTIALS="/path/to/credentials.json"
+   npm run auth:ga4
+   ```
+8. Set GA4 property ID:
+   ```bash
+   export GA4_PROPERTY_ID="525629873"
    ```
 
 ### Cloudflare
@@ -182,7 +187,7 @@ Error: API rate limit exceeded
 ```
 Error: User does not have sufficient permissions
 ```
-**Solution**: Verify OAuth scopes and that the service account has access to the GA4 property/GTM container.
+**Solution**: Verify OAuth scopes and that the signed-in OAuth user has access to the GA4 property/GTM container.
 
 #### Cloudflare Worker Deployment Failed
 ```

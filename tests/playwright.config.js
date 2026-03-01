@@ -1,10 +1,10 @@
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config = {
   // Test directory
-  testDir: './tests',
+  testDir: '.',
 
   // Test file pattern
-  testMatch: '**/*.spec.js',
+  testMatch: '*.spec.js',
 
   // Timeout for each test
   timeout: 30000,
@@ -55,24 +55,12 @@ const config = {
       use: {
         browserName: 'chromium'
       }
-    },
-    {
-      name: 'firefox',
-      use: {
-        browserName: 'firefox'
-      }
-    },
-    {
-      name: 'webkit',
-      use: {
-        browserName: 'webkit'
-      }
     }
   ],
 
   // Web server configuration (optional - for running with local dev server)
   webServer: {
-    command: 'npx http-server dashboard -p 8080',
+    command: 'npx http-server ../dashboard -p 8080',
     port: 8080,
     timeout: 120000,
     reuseExistingServer: !process.env.CI

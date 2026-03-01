@@ -22,12 +22,20 @@ async function fetchRepos(config) {
   let repos = [];
 
   try {
-    // Try gh CLI first
     const ghResult = execSync(
-      `gh api --paginate /users/${owner}/repos --jq '.[] | {name,full_name,fork,has_pages,html_url,default_branch}'`,
+      `gh repo list ${owner} --limit 1000 --json name,nameWithOwner,isFork,url,defaultBranchRef,createdAt,pushedAt`,
       { encoding: 'utf8', env: { ...process.env, GITHUB_TOKEN: token } }
     );
-    repos = ghResult.trim().split('\n').filter(line => line).map(line => JSON.parse(line));
+    repos = JSON.parse(ghResult).map(r => ({
+      name: r.name,
+      full_name: r.nameWithOwner,
+      fork: r.isFork,
+      has_pages: false,
+      html_url: r.url,
+      default_branch: r.defaultBranchRef?.name || 'main',
+      created_at: r.createdAt,
+      pushed_at: r.pushedAt
+    }));
   } catch (e) {
     // Fallback to curl
     const apiBase = 'https://api.github.com';
@@ -42,7 +50,9 @@ async function fetchRepos(config) {
       fork: r.fork,
       has_pages: r.has_pages,
       html_url: r.html_url,
-      default_branch: r.default_branch
+      default_branch: r.default_branch,
+      created_at: r.created_at,
+      pushed_at: r.pushed_at
     }));
   }
 
@@ -50,17 +60,26 @@ async function fetchRepos(config) {
   if (config.github.include_org_repos) {
     try {
       const orgReposResult = execSync(
-        `gh api --paginate /users/${owner}/orgs --jq '.[].login'`,
+        `gh api /users/${owner}/orgs`,
         { encoding: 'utf8', env: { ...process.env, GITHUB_TOKEN: token } }
       );
-      const orgs = orgReposResult.trim().split('\n').filter(Boolean);
+      const orgs = JSON.parse(orgReposResult).map(org => org.login);
 
       for (const org of orgs) {
         const orgReposRaw = execSync(
-          `gh api --paginate /orgs/${org}/repos --jq '.[] | {name,full_name,fork,has_pages,html_url,default_branch}'`,
+          `gh repo list ${org} --limit 1000 --json name,nameWithOwner,isFork,url,defaultBranchRef,createdAt,pushedAt`,
           { encoding: 'utf8', env: { ...process.env, GITHUB_TOKEN: token } }
         );
-        const orgRepos = orgReposRaw.trim().split('\n').filter(line => line).map(line => JSON.parse(line));
+        const orgRepos = JSON.parse(orgReposRaw).map(r => ({
+          name: r.name,
+          full_name: r.nameWithOwner,
+          fork: r.isFork,
+          has_pages: false,
+          html_url: r.url,
+          default_branch: r.defaultBranchRef?.name || 'main',
+          created_at: r.createdAt,
+          pushed_at: r.pushedAt
+        }));
         repos = [...repos, ...orgRepos];
       }
     } catch (e) {
@@ -79,7 +98,7 @@ async function checkForkActivity(repo, config) {
   try {
     // Check for PRs created by user
     const prsResult = execSync(
-      `gh search prs --repo=${repo.full_name} --author=${owner} --state=all --json number --jq length`,
+      `gh search prs --repo=${repo.full_name} --author=${owner} --state=all --json number --jq "length"`,
       { encoding: 'utf8', env: { ...process.env, GITHUB_TOKEN: token }, stdio: ['pipe', 'pipe', 'ignore'] }
     );
     const prCount = parseInt(prsResult.trim()) || 0;
@@ -90,7 +109,7 @@ async function checkForkActivity(repo, config) {
 
     // Check for commits by user (simplified - checks if any commits by author)
     const commitsResult = execSync(
-      `gh api /repos/${repo.full_name}/commits --jq '[.[] | select(.author.login == "${owner}")] | length'`,
+      `gh api /repos/${repo.full_name}/commits --jq "[.[] | select(.author.login == \\\"${owner}\\\")] | length"`,
       { encoding: 'utf8', env: { ...process.env, GITHUB_TOKEN: token }, stdio: ['pipe', 'pipe', 'ignore'] }
     );
     const commitCount = parseInt(commitsResult.trim()) || 0;
@@ -100,25 +119,6 @@ async function checkForkActivity(repo, config) {
     // If API fails, assume no activity for safety
     return { hasActivity: false, prs: 0, commits: 0 };
   }
-}
-
-// Check if repo has deployable site structure
-function hasDeployableStructure(repo) {
-  // In a real implementation, we'd clone and check
-  // For now, use naming conventions as heuristic
-  const deployablePatterns = [
-    /index\.html$/i,
-    /\/docs\//i,
-    /package\.json$/i,
-    /_config\.yml$/i, // Jekyll
-    /config\.toml$/i, // Hugo
-    /astro\.config\./i,
-    /vite\.config\./i,
-    /next\.config\./i
-  ];
-
-  // This is a simplified check - real implementation would fetch repo contents
-  return false; // Conservative default
 }
 
 // Classify a single repository
@@ -157,12 +157,12 @@ async function classifyRepo(repo, config) {
 
   // Classification logic
   if (!repo.fork) {
-    // Not a fork - potential CORE_PROJECT
-    const isCoreProject = repo.has_pages || hasDeployableStructure(repo);
+    // Non-fork repositories are treated as core projects unless pages are explicitly required.
+    const isCoreProject = classification.require_pages ? repo.has_pages : true;
     return {
       ...repo,
       classification: isCoreProject ? 'CORE_PROJECT' : 'PASSIVE_CLONE',
-      eligible: isCoreProject && (!classification.require_pages || repo.has_pages),
+      eligible: isCoreProject,
       reason: isCoreProject ? 'core_project' : 'no_pages'
     };
   }
@@ -238,6 +238,8 @@ async function discoverRepos(config, options = {}) {
     project_key: r.eligible ? r.name : null,
     analytics_config_path: null,
     gtm_snippet_path: null,
+    repo_created_at: r.created_at || null,
+    repo_pushed_at: r.pushed_at || null,
     errors: []
   }));
 

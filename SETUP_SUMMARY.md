@@ -89,7 +89,7 @@ Set these in: https://github.com/arvind3/brand-analytics-automation/settings/sec
 |-------------|-------|--------|
 | `GOOGLE_OAUTH_CREDENTIALS` | OAuth JSON from Google | google-oauth-credentials.json |
 | `GOOGLE_REFRESH_TOKEN` | Your refresh token | .ga4-token.json (after auth) |
-| `GA4_PROPERTY_ID` | `385311652` | Your GA4 property |
+| `GA4_PROPERTY_ID` | `525629873` | Your GA4 property |
 
 ---
 

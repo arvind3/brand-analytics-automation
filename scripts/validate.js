@@ -155,7 +155,7 @@ async function runPlaywrightTests(config) {
     }
 
     console.log('    Running Playwright tests...');
-    execSync('npx playwright test', {
+    execSync('npx playwright test --config tests/playwright.config.js', {
       cwd: path.join(__dirname, '..'),
       stdio: ['ignore', 'pipe', 'pipe']
     });
