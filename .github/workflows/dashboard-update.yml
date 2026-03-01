@@ -1,0 +1,61 @@
+name: Auto-Update Dashboard
+
+on:
+  schedule:
+    # Run daily at 6 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      fetch_data:
+        description: 'Fetch fresh GA4 data before deploying'
+        required: false
+        default: 'true'
+        type: boolean
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      # Step 1: Authorize Google (using stored refresh token)
+      - name: Setup Google OAuth
+        run: |
+          echo "${{ secrets.GOOGLE_OAUTH_CREDENTIALS }}" > google-oauth-credentials.json
+          if [ -n "${{ secrets.GOOGLE_REFRESH_TOKEN }}" ]; then
+            echo '{"refresh_token":"${{ secrets.GOOGLE_REFRESH_TOKEN }}"}' > .ga4-token.json
+          fi
+
+      # Step 2: Fetch GA4 data (if not using cached)
+      - name: Fetch GA4 Data
+        if: github.event.inputs.fetch_data == 'true' || github.event_name == 'schedule'
+        run: |
+          node scripts/fetch-ga4-data.js || echo "Data fetch failed, using cached data"
+        env:
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+
+      # Step 3: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dashboard
+          publish_branch: gh-pages
+          force_orphan: false
+
+      - name: Summary
+        run: |
+          echo "## Dashboard Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Fetched GA4 data: ${{ github.event.inputs.fetch_data == 'true' || github.event_name == 'schedule' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Deployed to: https://arvind3.github.io/brand-analytics-automation/" >> $GITHUB_STEP_SUMMARY
+          echo "- Timestamp: $(date -u)" >> $GITHUB_STEP_SUMMARY

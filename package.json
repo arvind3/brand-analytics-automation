@@ -17,7 +17,8 @@
     "auth:ga4": "node scripts/authorize-ga4.js",
     "fetch:data": "node scripts/fetch-ga4-data.js",
     "dashboard:push": "node scripts/push-dashboard.js",
-    "dashboard:init": "node scripts/init-dashboard-repo.js"
+    "dashboard:init": "node scripts/init-dashboard-repo.js",
+    "setup:secrets": "node scripts/setup-github-secrets.js"
   },
   "keywords": [
     "analytics",
@@ -39,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/arvind3/brand-analytics-automation.git"
   },
   "bugs": {
     "url": ""
