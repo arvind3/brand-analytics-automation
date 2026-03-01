@@ -28,19 +28,25 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 1: Authorize Google (using stored refresh token)
+      # Step 1: Setup Google OAuth credentials
       - name: Setup Google OAuth
         run: |
-          echo "${{ secrets.GOOGLE_OAUTH_CREDENTIALS }}" > google-oauth-credentials.json
+          echo '${{ secrets.GOOGLE_OAUTH_CREDENTIALS }}' > google-oauth-credentials.json
           if [ -n "${{ secrets.GOOGLE_REFRESH_TOKEN }}" ]; then
-            echo '{"refresh_token":"${{ secrets.GOOGLE_REFRESH_TOKEN }}"}' > .ga4-token.json
+            cat > .ga4-token.json << EOF
+          {
+            "refresh_token": "${{ secrets.GOOGLE_REFRESH_TOKEN }}"
+          }
+          EOF
           fi
+          echo "OAuth credentials configured"
 
-      # Step 2: Fetch GA4 data (if not using cached)
+      # Step 2: Fetch GA4 data
       - name: Fetch GA4 Data
-        if: github.event.inputs.fetch_data == 'true' || github.event_name == 'schedule'
+        if: github.event.inputs.fetch_data != 'false'
         run: |
-          node scripts/fetch-ga4-data.js || echo "Data fetch failed, using cached data"
+          echo "Property ID: ${{ secrets.GA4_PROPERTY_ID }}"
+          node scripts/fetch-ga4-data.js || echo "Data fetch failed - will use cached data if available"
         env:
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
 
@@ -52,10 +58,14 @@ jobs:
           publish_dir: ./dashboard
           publish_branch: gh-pages
           force_orphan: false
+          commit_message: 'Auto-update dashboard data [skip ci]'
 
       - name: Summary
         run: |
           echo "## Dashboard Update Summary" >> $GITHUB_STEP_SUMMARY
-          echo "- Fetched GA4 data: ${{ github.event.inputs.fetch_data == 'true' || github.event_name == 'schedule' }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Deployed to: https://arvind3.github.io/brand-analytics-automation/" >> $GITHUB_STEP_SUMMARY
-          echo "- Timestamp: $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Fetched GA4 data:** ${{ github.event.inputs.fetch_data != 'false' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Deployed to:** https://arvind3.github.io/brand-analytics-automation/" >> $GITHUB_STEP_SUMMARY
+          echo "- **Timestamp:** $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Dashboard auto-updates daily at 6 AM UTC." >> $GITHUB_STEP_SUMMARY

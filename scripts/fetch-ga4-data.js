@@ -18,8 +18,10 @@ const DASHBOARD_DIR = path.join(__dirname, '..', 'dashboard');
 const STATE_FILE = path.join(__dirname, '..', 'state', 'state.json');
 const CONFIG_FILE = path.join(__dirname, '..', 'config', 'brand.config.json');
 
-// GA4 Property ID from your URL
-const PROPERTY_ID = 'properties/385311652';
+// GA4 Property ID - from env var, config, or default
+const PROPERTY_ID = process.env.GA4_PROPERTY_ID
+  ? `properties/${process.env.GA4_PROPERTY_ID}`
+  : 'properties/385311652';
 
 // Get valid access token
 async function getAccessToken() {
