@@ -99,9 +99,13 @@ async function resolveGtmWorkspacePath(token, strategy, config) {
     throw new Error('Could not resolve GTM account. Set gtm.account_id_optional or strategy.gtm.workspacePath.');
   }
 
+  const containers = await listAll(token, `https://www.googleapis.com/tagmanager/v2/accounts/${accountId}/containers`, 'container');
   let containerId = containerIdOptional;
+  if (containerId && !/^\d+$/.test(String(containerId))) {
+    const matched = containers.find(c => c.publicId === containerId || c.containerId === containerId || c.name === containerId);
+    containerId = matched?.containerId || null;
+  }
   if (!containerId) {
-    const containers = await listAll(token, `https://www.googleapis.com/tagmanager/v2/accounts/${accountId}/containers`, 'container');
     const byName = containers.find(c => c.name === config?.gtm?.container_name);
     containerId = (byName || containers[0])?.containerId || null;
   }
@@ -229,6 +233,22 @@ async function ensureGtmTags(token, workspacePath, desired, apply) {
       delete body.firingTriggerNames;
     }
 
+    // Friendly input support for Google tag payloads.
+    if (body.type === 'googtag' && Array.isArray(body.parameter)) {
+      const hasTagId = body.parameter.some(p => p?.key === 'tagId');
+      if (!hasTagId) {
+        const measurement = body.parameter.find(p => p?.key === 'measurementId' || p?.key === 'measurement_id');
+        if (measurement?.value) {
+          body.parameter = body.parameter.filter(p => p?.key !== 'measurementId' && p?.key !== 'measurement_id');
+          body.parameter.push({
+            type: 'template',
+            key: 'tagId',
+            value: measurement.value
+          });
+        }
+      }
+    }
+
     actions.push({ type: apply ? 'create' : 'plan-create', resource: 'gtm.tag', name: tag.name });
     if (apply) {
       await apiRequest(token, 'POST', tagBaseUrl, body);
@@ -268,12 +288,30 @@ async function main() {
 
   const workspacePath = await resolveGtmWorkspacePath(token, strategy, config);
   const actions = [];
+  const warnings = [];
 
-  actions.push(...await ensureGa4CustomDimensions(token, propertyId, strategy?.ga4?.customDimensions, apply));
-  actions.push(...await ensureGa4KeyEvents(token, propertyId, strategy?.ga4?.keyEvents, apply));
-  actions.push(...await ensureGtmVariables(token, workspacePath, strategy?.gtm?.variables, apply));
-  actions.push(...await ensureGtmTriggers(token, workspacePath, strategy?.gtm?.triggers, apply));
-  actions.push(...await ensureGtmTags(token, workspacePath, strategy?.gtm?.tags, apply));
+  try {
+    actions.push(...await ensureGa4CustomDimensions(token, propertyId, strategy?.ga4?.customDimensions, apply));
+    actions.push(...await ensureGa4KeyEvents(token, propertyId, strategy?.ga4?.keyEvents, apply));
+  } catch (err) {
+    warnings.push({
+      scope: 'ga4-admin',
+      message: err.message,
+      response: err.response || null
+    });
+  }
+
+  try {
+    actions.push(...await ensureGtmVariables(token, workspacePath, strategy?.gtm?.variables, apply));
+    actions.push(...await ensureGtmTriggers(token, workspacePath, strategy?.gtm?.triggers, apply));
+    actions.push(...await ensureGtmTags(token, workspacePath, strategy?.gtm?.tags, apply));
+  } catch (err) {
+    warnings.push({
+      scope: 'gtm',
+      message: err.message,
+      response: err.response || null
+    });
+  }
 
   const summary = summarize(actions);
   console.log('='.repeat(60));
@@ -282,6 +320,12 @@ async function main() {
   console.log(`GA4 Property: ${propertyId}`);
   console.log(`GTM Workspace: ${workspacePath}`);
   console.log(`Actions: ${actions.length}`);
+  if (warnings.length > 0) {
+    console.log(`Warnings: ${warnings.length}`);
+    for (const warning of warnings) {
+      console.log(`  ${warning.scope}: ${warning.message}`);
+    }
+  }
   for (const [key, count] of Object.entries(summary)) {
     console.log(`  ${key}=${count}`);
   }
@@ -298,6 +342,7 @@ async function main() {
         mode: apply ? 'apply' : 'plan',
         propertyId,
         workspacePath,
+        warnings,
         actions
       },
       null,
