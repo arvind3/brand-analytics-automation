@@ -21,7 +21,11 @@ const CREDENTIALS_FILE = path.join(__dirname, '..', 'google-oauth-credentials.js
 const TOKEN_FILE = path.join(__dirname, '..', '.ga4-token.json');
 
 const SCOPES = [
-  'https://www.googleapis.com/auth/analytics.readonly'
+  'https://www.googleapis.com/auth/analytics.readonly',
+  'https://www.googleapis.com/auth/analytics.edit',
+  'https://www.googleapis.com/auth/tagmanager.readonly',
+  'https://www.googleapis.com/auth/tagmanager.edit.containers',
+  'https://www.googleapis.com/auth/tagmanager.publish'
 ].join(' ');
 
 // Load OAuth2 credentials

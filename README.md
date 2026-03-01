@@ -105,6 +105,25 @@ npm run apply
 npm run validate
 ```
 
+### Zero-Touch Analytics Strategy (GA4 + GTM)
+
+Define events, variables, triggers, and tags as code, then let the agent apply them:
+
+```bash
+# 1) create strategy file from template
+cp config/analytics.strategy.example.json config/analytics.strategy.json
+
+# 2) preview changes (no writes)
+npm run strategy:plan
+
+# 3) apply to GA4 + GTM
+npm run strategy:apply
+```
+
+Notes:
+- `npm run auth:ga4` now requests GA4 + GTM write scopes.
+- Re-run auth after scope changes to refresh consent.
+
 ### Custom Configuration
 
 ```bash

@@ -254,6 +254,10 @@ npm run fetch:data
 
 # Authorize Google (if token expired)
 npm run auth:ga4
+
+# Plan/apply analytics strategy resources in GA4 + GTM
+npm run strategy:plan
+npm run strategy:apply
 ```
 
 ---

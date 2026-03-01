@@ -1,0 +1,74 @@
+{
+  "ga4": {
+    "customDimensions": [
+      {
+        "parameterName": "project_key",
+        "displayName": "Project Key",
+        "description": "Repository or project identifier for attribution",
+        "scope": "EVENT"
+      },
+      {
+        "parameterName": "page_category",
+        "displayName": "Page Category",
+        "description": "Logical page type",
+        "scope": "EVENT"
+      }
+    ],
+    "keyEvents": [
+      {
+        "eventName": "brand_project_interaction"
+      },
+      {
+        "eventName": "brand_engagement"
+      }
+    ]
+  },
+  "gtm": {
+    "variables": [
+      {
+        "name": "project_key",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "project_key"
+          }
+        ]
+      },
+      {
+        "name": "page_category",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "name",
+            "value": "page_category"
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "name": "All Pages",
+        "type": "PAGEVIEW"
+      }
+    ],
+    "tags": [
+      {
+        "name": "GA4 Config",
+        "type": "googtag",
+        "parameter": [
+          {
+            "type": "template",
+            "key": "measurementId",
+            "value": "G-TGC17M8DH9"
+          }
+        ],
+        "firingTriggerNames": [
+          "All Pages"
+        ]
+      }
+    ]
+  }
+}
