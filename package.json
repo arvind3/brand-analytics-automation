@@ -1,0 +1,49 @@
+{
+  "name": "brand-analytics-automation",
+  "version": "1.0.0",
+  "description": "Automated deployment and management of unified analytics tracking across GitHub repositories",
+  "main": "scripts/run.js",
+  "scripts": {
+    "discover": "node scripts/run.js --config config/brand.config.json",
+    "apply": "node scripts/run.js --config config/brand.config.json --apply",
+    "validate": "node scripts/run.js --config config/brand.config.json --validate",
+    "dry-run": "node scripts/run.js --config config/brand.config.json --dry-run",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "worker:dev": "wrangler dev scripts/proxy-worker.js",
+    "worker:deploy": "wrangler deploy scripts/proxy-worker.js --name brand-analytics-proxy",
+    "dashboard:serve": "http-server dashboard -p 8080",
+    "auth:ga4": "node scripts/authorize-ga4.js",
+    "fetch:data": "node scripts/fetch-ga4-data.js",
+    "dashboard:push": "node scripts/push-dashboard.js",
+    "dashboard:init": "node scripts/init-dashboard-repo.js"
+  },
+  "keywords": [
+    "analytics",
+    "ga4",
+    "gtm",
+    "github",
+    "automation",
+    "tracking",
+    "dashboard"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {}
+}

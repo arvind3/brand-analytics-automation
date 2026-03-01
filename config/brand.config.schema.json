@@ -1,0 +1,227 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Brand Analytics Configuration Schema",
+  "description": "Configuration schema for Personal Brand Analytics Automation",
+  "type": "object",
+  "required": ["github", "ga4", "gtm", "dashboard_repo"],
+  "properties": {
+    "github": {
+      "type": "object",
+      "required": ["owner", "token_env"],
+      "properties": {
+        "owner": {
+          "type": "string",
+          "description": "Your GitHub username"
+        },
+        "token_env": {
+          "type": "string",
+          "description": "Environment variable name for GitHub token",
+          "default": "GITHUB_TOKEN"
+        },
+        "include_org_repos": {
+          "type": "boolean",
+          "description": "Include repositories from organizations you belong to",
+          "default": true
+        },
+        "include_private": {
+          "type": "boolean",
+          "description": "Include private repositories",
+          "default": false
+        },
+        "force_include_repos": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of repo names to always include"
+        },
+        "force_exclude_repos": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of repo names to always exclude"
+        }
+      }
+    },
+    "classification": {
+      "type": "object",
+      "properties": {
+        "include_forks": {
+          "type": "boolean",
+          "description": "Include forked repositories with activity",
+          "default": false
+        },
+        "min_activity_days": {
+          "type": "integer",
+          "description": "Minimum days since last activity to consider repo active",
+          "default": 30
+        },
+        "require_pages": {
+          "type": "boolean",
+          "description": "Require GitHub Pages to be enabled for CORE_PROJECT classification",
+          "default": false
+        }
+      }
+    },
+    "ga4": {
+      "type": "object",
+      "required": ["property_name"],
+      "properties": {
+        "property_name": {
+          "type": "string",
+          "description": "Name for the GA4 property"
+        },
+        "property_id_optional": {
+          "type": "string",
+          "description": "Existing GA4 property ID (e.g., 123456789) - set to reuse existing property"
+        },
+        "data_stream_id_optional": {
+          "type": "string",
+          "description": "Existing data stream ID"
+        },
+        "measurement_id_optional": {
+          "type": "string",
+          "description": "Existing measurement ID (e.g., G-XXXXXXXXXX)"
+        }
+      }
+    },
+    "gtm": {
+      "type": "object",
+      "required": ["container_name"],
+      "properties": {
+        "account_id_optional": {
+          "type": "string",
+          "description": "Existing GTM account ID"
+        },
+        "container_name": {
+          "type": "string",
+          "description": "Name for the GTM container"
+        },
+        "container_id_optional": {
+          "type": "string",
+          "description": "Existing GTM container ID (e.g., GTM-XXXXXXX) - set to reuse existing container"
+        },
+        "workspace_name": {
+          "type": "string",
+          "description": "GTM workspace name",
+          "default": "Default Workspace"
+        }
+      }
+    },
+    "serverless_proxy": {
+      "type": "object",
+      "required": ["provider", "worker_name"],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "enum": ["cloudflare"],
+          "description": "Serverless provider"
+        },
+        "worker_name": {
+          "type": "string",
+          "description": "Name for the Cloudflare Worker"
+        },
+        "routes_optional": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Custom routes for the Worker"
+        },
+        "secrets_env_names": {
+          "type": "object",
+          "properties": {
+            "ga4_credentials": {"type": "string"},
+            "ga4_measurement_id": {"type": "string"}
+          }
+        }
+      }
+    },
+    "dashboard_repo": {
+      "type": "object",
+      "required": ["name", "branch"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Dashboard repository name"
+        },
+        "branch": {
+          "type": "string",
+          "description": "GitHub Pages branch",
+          "default": "gh-pages"
+        },
+        "pages_path": {
+          "type": "string",
+          "description": "Path to Pages source files",
+          "default": "./dashboard"
+        },
+        "base_url": {
+          "type": "string",
+          "description": "Public URL of the dashboard",
+          "format": "uri"
+        }
+      }
+    },
+    "tracking": {
+      "type": "object",
+      "properties": {
+        "event_names": {
+          "type": "object",
+          "properties": {
+            "page_view": {"type": "string"},
+            "engagement": {"type": "string"},
+            "project_interaction": {"type": "string"}
+          }
+        },
+        "custom_dimensions": {
+          "type": "object",
+          "properties": {
+            "project_key": {"type": "string"},
+            "repo_name": {"type": "string"},
+            "page_category": {"type": "string"}
+          }
+        },
+        "project_key_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {"type": "string"},
+              "priority": {"type": "integer"},
+              "description": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "run_playwright": {
+          "type": "boolean",
+          "default": true
+        },
+        "base_url": {
+          "type": "string",
+          "description": "Base URL for validation tests"
+        },
+        "expected_widgets": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "List of expected widget IDs on dashboard"
+        },
+        "thresholds": {
+          "type": "object",
+          "properties": {
+            "min_projects": {"type": "integer"},
+            "max_api_response_time_ms": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "report_path": {
+          "type": "string",
+          "default": "./reports/latest.json"
+        }
+      }
+    }
+  }
+}

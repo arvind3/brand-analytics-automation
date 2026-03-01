@@ -1,0 +1,90 @@
+{
+  "$schema": "./brand.config.schema.json",
+  "github": {
+    "owner": "arvind3",
+    "token_env": "GITHUB_TOKEN",
+    "include_org_repos": true,
+    "include_private": false,
+    "force_include_repos": [],
+    "force_exclude_repos": []
+  },
+  "classification": {
+    "include_forks": false,
+    "min_activity_days": 30,
+    "require_pages": false
+  },
+  "ga4": {
+    "property_name": "Arvind Personal Brand",
+    "property_id_optional": "385311652",
+    "data_stream_id_optional": "",
+    "measurement_id_optional": "G-TGC17M8DH9"
+  },
+  "gtm": {
+    "account_id_optional": "",
+    "container_name": "Arvind Personal Brand Container",
+    "container_id_optional": "GTM-MKBT6R73",
+    "workspace_name": "Default Workspace"
+  },
+  "serverless_proxy": {
+    "provider": "cloudflare",
+    "worker_name": "arvind-analytics-proxy",
+    "routes_optional": [],
+    "secrets_env_names": {
+      "ga4_credentials": "GOOGLE_APPLICATION_CREDENTIALS",
+      "ga4_measurement_id": "GA4_MEASUREMENT_ID"
+    }
+  },
+  "dashboard_repo": {
+    "name": "brand-analytics-dashboard",
+    "branch": "gh-pages",
+    "pages_path": "./dashboard",
+    "base_url": "https://arvind3.github.io/brand-analytics-dashboard"
+  },
+  "tracking": {
+    "event_names": {
+      "page_view": "brand_page_view",
+      "engagement": "brand_engagement",
+      "project_interaction": "brand_project_interaction"
+    },
+    "custom_dimensions": {
+      "project_key": "project_key",
+      "repo_name": "repo_name",
+      "page_category": "page_category"
+    },
+    "project_key_rules": [
+      {
+        "type": "config_file",
+        "priority": 1,
+        "description": "Use project_key from analytics.config.json"
+      },
+      {
+        "type": "repo_name_from_path",
+        "priority": 2,
+        "description": "Infer from GitHub Pages path /<repo-name>/"
+      },
+      {
+        "type": "hostname_mapping",
+        "priority": 3,
+        "description": "Use hostname mapping rule from config"
+      }
+    ]
+  },
+  "validation": {
+    "run_playwright": true,
+    "base_url": "http://localhost:8080",
+    "expected_widgets": [
+      "users-by-country",
+      "users-by-device",
+      "top-projects",
+      "traffic-over-time",
+      "source-medium-breakdown"
+    ],
+    "thresholds": {
+      "min_projects": 1,
+      "max_api_response_time_ms": 5000
+    }
+  },
+  "output": {
+    "report_path": "./reports/latest.json"
+  }
+}

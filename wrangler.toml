@@ -1,0 +1,22 @@
+name = "brand-analytics-proxy"
+main = "scripts/proxy-worker.js"
+compatibility_date = "2024-01-01"
+
+# Account ID - set via environment variable or replace with your ID
+# account_id = "your-cloudflare-account-id"
+
+# Secrets (set via `wrangler secret put`):
+# - GA4_CREDENTIALS: Google service account JSON
+# - GA4_MEASUREMENT_ID: GA4 measurement ID (e.g., G-XXXXXXXXXX)
+
+[vars]
+# Non-sensitive configuration
+ALLOWED_ORIGINS = "https://your-username.github.io"
+CACHE_TTL = 300
+
+# Environment-specific configuration
+[env.production]
+name = "brand-analytics-proxy-prod"
+
+[env.staging]
+name = "brand-analytics-proxy-staging"

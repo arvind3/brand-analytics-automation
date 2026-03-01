@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "repos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Repository name"
+          },
+          "full_name": {
+            "type": "string",
+            "description": "Owner/repo name"
+          },
+          "classification": {
+            "type": "string",
+            "enum": ["CORE_PROJECT", "ACTIVE_CONTRIBUTION", "PASSIVE_CLONE"],
+            "description": "Repository classification"
+          },
+          "eligible": {
+            "type": "boolean",
+            "description": "Whether repo is eligible for tracking"
+          },
+          "strategy_applied": {
+            "type": "boolean",
+            "description": "Whether tracking strategy has been applied"
+          },
+          "tracking_installed": {
+            "type": "boolean",
+            "description": "Whether GTM snippet is installed"
+          },
+          "drift_detected": {
+            "type": "boolean",
+            "description": "Whether drift was detected (snippet removed)"
+          },
+          "last_applied_at": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "Timestamp of last application"
+          },
+          "last_validated_at": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "Timestamp of last validation"
+          },
+          "dashboard_included": {
+            "type": "boolean",
+            "description": "Whether repo is included in dashboard"
+          },
+          "project_key": {
+            "type": ["string", "null"],
+            "description": "Project key for analytics attribution"
+          },
+          "analytics_config_path": {
+            "type": ["string", "null"],
+            "description": "Path to analytics.config.json"
+          },
+          "gtm_snippet_path": {
+            "type": ["array", "items": {"type": "string"}, "nullable": true},
+            "description": "Paths where GTM snippet was injected"
+          },
+          "errors": {
+            "type": ["array", "items": {"type": "string"}],
+            "nullable": true,
+            "description": "Errors encountered during processing"
+          }
+        },
+        "required": ["name", "full_name", "classification", "eligible"]
+      }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "total_repos_scanned": { "type": "integer" },
+        "total_eligible_repos": { "type": "integer" },
+        "excluded_passive_clones": { "type": "integer" },
+        "already_implemented": { "type": "integer" },
+        "net_new_implemented": { "type": "integer" },
+        "drift_repaired": { "type": "integer" },
+        "failed": { "type": "integer" }
+      },
+      "required": [
+        "total_repos_scanned",
+        "total_eligible_repos",
+        "excluded_passive_clones",
+        "already_implemented",
+        "net_new_implemented",
+        "drift_repaired",
+        "failed"
+      ]
+    },
+    "dashboard": {
+      "type": "object",
+      "properties": {
+        "last_updated": { "type": ["string", "null"], "format": "date-time" },
+        "last_validated": { "type": ["string", "null"], "format": "date-time" },
+        "validation_passed": { "type": ["boolean", "null"] },
+        "projects_count": { "type": "integer" }
+      }
+    },
+    "ga4": {
+      "type": "object",
+      "properties": {
+        "property_id": { "type": ["string", "null"] },
+        "measurement_id": { "type": ["string", "null"] },
+        "data_stream_id": { "type": ["string", "null"] },
+        "custom_dimension_created": { "type": "boolean" }
+      }
+    },
+    "gtm": {
+      "type": "object",
+      "properties": {
+        "container_id": { "type": ["string", "null"] },
+        "published_version": { "type": ["string", "null"] },
+        "last_published_at": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "proxy": {
+      "type": "object",
+      "properties": {
+        "worker_url": { "type": ["string", "null"] },
+        "deployed_at": { "type": ["string", "null"], "format": "date-time" }
+      }
+    }
+  },
+  "required": ["last_updated", "repos", "summary"]
+}
