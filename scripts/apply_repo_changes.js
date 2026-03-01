@@ -10,6 +10,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const testRepo = require('./test-repo');
 
 // GTM snippet template (placeholder - actual ID injected at runtime)
 const GTM_HEAD_SNIPPET = `<!-- Google Tag Manager -->
@@ -246,6 +247,38 @@ async function processRepo(repo, config, state, options = {}) {
     }
 
     if (changes.length > 0) {
+      // TEST: Run build/validation tests BEFORE pushing
+      console.log('    Running tests to ensure build is not broken...');
+      const testResult = await testRepo(cachePath, repo.name);
+
+      if (!testResult.build.passed) {
+        // Build failed - revert changes and report error
+        console.log('    TEST FAILED: Reverting changes to avoid breaking build');
+        execSync('git checkout -- .', { cwd: cachePath });
+        execSync('git clean -fd', { cwd: cachePath });
+        result.action = 'test_failed';
+        result.changes = changes;
+        result.success = false;
+        result.errors.push(`Build test failed: ${testResult.build.output || 'Unknown error'}`);
+        result.testResults = testResult;
+        return result;
+      }
+
+      if (!testResult.validation?.passed) {
+        // Validation failed with errors (warnings are OK)
+        console.log('    TEST FAILED: Validation errors found');
+        execSync('git checkout -- .', { cwd: cachePath });
+        execSync('git clean -fd', { cwd: cachePath });
+        result.action = 'test_failed';
+        result.changes = changes;
+        result.success = false;
+        result.errors.push(`Validation failed: ${JSON.stringify(testResult.validation?.errors || [])}`);
+        result.testResults = testResult;
+        return result;
+      }
+
+      console.log('    Tests passed! Pushing changes...');
+
       // Commit and push changes
       const branchName = 'add-analytics-tracking';
       execSync(`git checkout -b ${branchName}`, { cwd: cachePath });
@@ -259,12 +292,14 @@ async function processRepo(repo, config, state, options = {}) {
         result.changes = changes;
         result.success = true;
         result.prUrl = `https://github.com/${repo.full_name}/compare/${branchName}?expand=1`;
+        result.testResults = testResult;
       } catch (pushError) {
         result.action = 'committed_local';
         result.changes = changes;
         result.success = true;
         result.errors.push(`Could not push: ${pushError.message}`);
         result.manualSteps = `Please push branch '${branchName}' from ${cachePath}`;
+        result.testResults = testResult;
       }
     }
 
